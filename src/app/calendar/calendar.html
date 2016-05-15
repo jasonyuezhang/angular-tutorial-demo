@@ -1,0 +1,41 @@
+<div layout="vertical" layout-fill>
+
+  <md-content>
+
+    <header>
+      <acme-navbar create-date="calendar.creationDate"></acme-navbar>
+    </header>
+
+    <section class="jumbotron">
+      <h1>'Allo, 'Allo!</h1>
+
+      <div class="calendar clearfix">
+        <calendar>
+          <div class="header">
+            <md-icon class="fa-angle-left" ng-click="calendar.previous()"> navigate_before </md-icon>
+            <span>{{ calendar.month.format('MMMM, YYYY') }}</span>
+            <md-icon class="fa-angle-right" ng-click="calendar.next()"> navigate_next </md-icon>
+          </div>
+
+          <div class="week names">
+            <span class="day">Sun</span>
+            <span class="day">Mon</span>
+            <span class="day">Tue</span>
+            <span class="day">Wed</span>
+            <span class="day">Thu</span>
+            <span class="day">Fri</span>
+            <span class="day">Sat</span>
+          </div>
+          <div class="week" ng-repeat="week in calendar.weeks">
+            <span class="day" ng-class="{ today: day.isToday, 'different-month': !day.isCurrentMonth, selected: day.date.isSame(calendar.selected) }" ng-click="calendar.select(day)" ng-repeat="day in week.days">{{day.number}}</span>
+          </div>
+        </calendar>
+        <span>Selected date: <b>{{calendar.selected.format('dddd, MMMM Do YYYY')}}</b></span>
+      </div>
+
+      <div class="bottom"></div>
+    </section>
+
+  </md-content>
+  
+</div>
